@@ -39,7 +39,8 @@
 
 -- will need a fetch-utils with a getPokemon to get backend
     - const rawData = await fetch('localhost...')
-    - const data = await rawData.json
+    - const data = await rawData.json()
 
 in App.js we'll need some state and import useState and getPokemon from fetch-utils
     -useEffect to get pokemon on load
+    -now we have pokemon in state so map over them

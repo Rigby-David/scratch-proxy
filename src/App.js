@@ -19,7 +19,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        
+        {
+          pokemon.map((poke, i) => <div
+            key={poke.pokemon + i}>
+            <p>{poke.pokemon}</p>
+            <img src={poke.url_image}/>
+          </div>)
+        }
       </header>
     </div>
   );
