@@ -44,3 +44,10 @@
 in App.js we'll need some state and import useState and getPokemon from fetch-utils
     -useEffect to get pokemon on load
     -now we have pokemon in state so map over them
+    -add styling to reduce img size
+
+    --- at this point we've made the full connection. JS makes a request to the netlify function which can tell that the client wants some JS data and so it goes to the backend which responds to the netlify function server
+
+    -SEARCH INPUT
+    -we'll need a <form> with an <input>
+    -replace current ENDPOINT with https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=char&defense=50

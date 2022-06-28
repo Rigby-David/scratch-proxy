@@ -1,3 +1,7 @@
+.pokemon-list img {
+  width: 200px;
+}
+
 .App {
   text-align: center;
 }

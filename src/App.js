@@ -6,27 +6,38 @@ import './App.css';
 function App() {
 
   const [pokemon, setPokemon] = useState([]);
+  const [pokemonQuery, setPokemonQuery] = useState([]);
+
+  async function goFetchPokemon() {
+    const data = await getPokemon(pokemonQuery);
+    
+    setPokemon(data.results);
+  }
 
   useEffect(() => {
-    async function onLoad() {
-      const data = await getPokemon();
-      console.log(data);
-      setPokemon(data.results);
-    }
-    onLoad();
+    
+    goFetchPokemon();
   }, []);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    goFetchPokemon();
+  }
 
   return (
     <div className="App">
-      <header className="App-header">
-        {
-          pokemon.map((poke, i) => <div
-            key={poke.pokemon + i}>
-            <p>{poke.pokemon}</p>
-            <img src={poke.url_image}/>
-          </div>)
-        }
-      </header>
+      <form onSubmit={handleSubmit}>
+        <input onChange={(e) => setPokemonQuery(e.target.value)}/>
+        <button>Search</button>
+      </form>
+      {
+        pokemon.map((poke, i) => <div
+          key={poke.pokemon + i} className="pokemon-list">
+          <p>{poke.pokemon}</p>
+          <img src={poke.url_image}/>
+        </div>)
+      }
     </div>
   );
 }
