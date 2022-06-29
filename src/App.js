@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     
     goFetchPokemon();
-  }, []);
+  }, []); //eslint-disable-line
 
   async function handleSubmit(e) {
     e.preventDefault();
