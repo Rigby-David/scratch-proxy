@@ -22,13 +22,14 @@ function App() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    goFetchPokemon();
+    await goFetchPokemon();
+    setPokemonQuery('');
   }
 
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-        <input onChange={(e) => setPokemonQuery(e.target.value)}/>
+        <input value={pokemonQuery} onChange={(e) => setPokemonQuery(e.target.value)}/>
         <button>Search</button>
       </form>
       {
