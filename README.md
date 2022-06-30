@@ -1,25 +1,53 @@
-# Alchemy React Base Template
+## Client Side -- Server Side 
+-- clients make requests, servers make responses
+-- client side (front end) is the user's computer 
+-- server side (back end) is every other computer
+-- supabase is a proxy. it makes requests and responses
+-- SQL only makes responses
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-- if you're hitting third party API, you'll get CORS, so you need a server to pass through to prevent CORS errors
+-- CORS - chrome stops API responses from different domains
 
-Use this template for all your "from scratch" deliverables. To start, simply run
+-- API is a collection of ENDPOINTS
+-- ENDPOINTS are URLs that let us play with data
+-- GET ENDPOINT - used for reading data
+-- POST ENDPOINT - used for creating data
 
-- `npm install`
-- `npm start`
+-- API is a way to get JSON
+"make a call to the API"
+"make a request to the API"
+"hit the API"
+-- all mean the same thing
+-- we use Postman to hit APIs as devs
+-- pokemon.js is our netlify function which requests and responds to client and server (pokemon API)
 
-## Available Scripts
+-- JS's superpower: 1) can manipulate DOM elements 2) make requests to the back end
+-- Node's superpower: 1) can create/delete files(sql) 2)listen for and respond to requests
 
-In the project directory, you can run:
+-- Postman to make a GET request to hit the pokedex API
+-- When you hit SEND in Postman, it goes to exports.handler = async (event, context) function in functions, then goes to the API them makes a response which goes to Postman
 
-### `npm start`
+### POSTMAN ###
+-- npm run dev
+-- this terminal will now show consoles. get your localhost:8888 from here. copy your API into your netlify/functions and your location host into Postman -- something like this  http://localhost:8888/.netlify/functions/pokemon
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Plan
+--- Postman http://localhost:8888/.netlify/funcstions/pokemon in GET URL
 
-### `npm test`
+-- in functions directory, paste this URL {https://pokedex-alchemy.herokuapp.com/api/pokedex?page=3&perPage=50} in fetch on line 13
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-- will need a fetch-utils with a getPokemon to get backend
+    - const rawData = await fetch('localhost...')
+    - const data = await rawData.json()
+
+in App.js we'll need some state and import useState and getPokemon from fetch-utils
+    -useEffect to get pokemon on load
+    -now we have pokemon in state so map over them
+    -add styling to reduce img size
+
+    --- at this point we've made the full connection. JS makes a request to the netlify function which can tell that the client wants some JS data and so it goes to the backend which responds to the netlify function server
+
+    -SEARCH INPUT
+    -we'll need a <form> with an <input>
+    -replace current ENDPOINT with https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=char&defense=50
